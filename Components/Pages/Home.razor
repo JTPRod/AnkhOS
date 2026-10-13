@@ -1,0 +1,31 @@
+@page "/"
+@rendermode InteractiveServer
+@using KemeticReference.Models
+@inject KemeticReference.Services.DeityService Catalog
+@inject ILogger<Home> Logger
+<PageTitle>Kemetic Reference</PageTitle>
+<link rel="stylesheet" href="css/kemetic.css" />
+<h1>Kemetic Reference</h1>
+<p>Explore deity information and its sources. Personal accounts and community features will be added in the next milestones.</p>
+<p class="notice">Development starter: the five profiles contain placeholders, not verified religious guidance.</p>
+<nav aria-label="Project features"><a href="/my-profile">My profile</a> · <a href="/favorites">Favorites</a></nav>
+@if (failed) { <p role="alert">Reference information could not be loaded. Please try again later.</p> }
+else if (deities is null) { <p>Loading deities…</p> }
+else
+{
+ <label for="deity-search">Search by deity name</label>
+ <input id="deity-search" type="search" @bind="query" @bind:event="oninput" />
+ <div class="deity-grid">@foreach (var deity in Filtered) { <DeityCard Deity="deity" /> }</div>
+ @if (!Filtered.Any()) { <p>No matching deities found.</p> }
+}
+@code {
+ private IReadOnlyList<Deity>? deities;
+ private string query = "";
+ private bool failed;
+ private IEnumerable<Deity> Filtered => (deities ?? Array.Empty<Deity>()).Where(d => d.Name.Contains(query.Trim(), StringComparison.OrdinalIgnoreCase) || d.AlternateNames.Any(n => n.Contains(query.Trim(), StringComparison.OrdinalIgnoreCase)));
+ protected override async Task OnInitializedAsync()
+ {
+  try { deities = await Catalog.GetAllAsync(); }
+  catch (Exception ex) { Logger.LogError(ex, "Catalog loading failed"); failed = true; }
+ }
+}

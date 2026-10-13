@@ -1,0 +1,42 @@
+@page "/deities/{Id}"
+@using KemeticReference.Models
+@inject KemeticReference.Services.DeityService Catalog
+@inject ILogger<DeityDetails> Logger
+<link rel="stylesheet" href="css/kemetic.css" />
+<a href="/">Back to deities</a>
+@if (failed) { <p role="alert">Reference information could not be loaded.</p> }
+else if (loading) { <p>Loading profile…</p> }
+else if (deity is null) { <h1>Deity not found</h1> }
+else
+{
+ <PageTitle>@deity.Name</PageTitle>
+ <h1>@deity.Name</h1><p>@deity.Summary</p>
+ @if (deity.IsPlaceholder) { <p class="notice">Development placeholder. No reviewed content has been added.</p> }
+ <nav aria-label="Profile sections"><a href="#background">Background</a> · <a href="#associations">Associations</a> · <a href="#worship">Worship practices</a> · <a href="#devotion">Devotional acts</a> · <a href="#sources">Sources</a></nav>
+ <ContentSection Title="Background" SectionId="background" Entries="deity.Background" />
+ <ContentSection Title="Symbols and associations" SectionId="associations" Entries="deity.Associations" />
+ <ContentSection Title="Worship practices" SectionId="worship" Entries="deity.WorshipPractices" />
+ <ContentSection Title="Devotional acts" SectionId="devotion" Entries="deity.DevotionalActs" />
+ <section id="sources"><h2>Sources</h2>
+ @if (deity.Sources.Count == 0) { <p>No reviewed sources added yet.</p> }
+ @foreach (var source in deity.Sources) {
+  <article id="@($"source-{source.Id}")"><h3>@source.Title</h3><p>@source.Author — @source.PublicationDetails</p>
+   @if (source.Url is not null) { <a href="@source.Url">Read source</a> }
+  </article>
+ }
+ </section>
+ <p>Last reviewed: @(deity.LastReviewed?.ToString("yyyy-MM-dd") ?? "Not reviewed")</p>
+ <a href="@($"/deities/{Id}/community")">Community experiences and practices</a>
+}
+@code {
+ [Parameter] public string Id { get; set; } = "";
+ private Deity? deity;
+ private bool loading = true, failed;
+ protected override async Task OnParametersSetAsync()
+ {
+  loading = true; failed = false; deity = null;
+  try { deity = await Catalog.GetByIdAsync(Id); }
+  catch (Exception ex) { Logger.LogError(ex, "Profile loading failed"); failed = true; }
+  finally { loading = false; }
+ }
+}

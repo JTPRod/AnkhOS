@@ -1,0 +1,16 @@
+@using KemeticReference.Models
+<section id="@SectionId">
+ <h2>@Title</h2>
+ @if (Entries.Count == 0) { <p>No reviewed information available.</p> }
+ @foreach (var entry in Entries)
+ {
+  <article><p><strong>@entry.EvidenceType</strong> — @entry.Context</p><p>@entry.Text</p>
+   <p>Sources: @foreach (var id in entry.SourceIds) { <a href="@($"#source-{id}")">@id</a><text> </text> }</p>
+  </article>
+ }
+</section>
+@code {
+ [Parameter] public string Title { get; set; } = "";
+ [Parameter] public string SectionId { get; set; } = "";
+ [Parameter] public List<ContentEntry> Entries { get; set; } = [];
+}
