@@ -1,3 +1,9 @@
+# Project title - AnkhOS
+# Project description - Information Hub for Kemetic deities
+# Team member name(s) - J, Nova, Xavier
+# Technologies being used - C#, HTML, CSS, Blazor WebAssembly, Progressive Web App, Bootstrap, JSON, Browser Local Storage, Visual Studio, .NET SDK, Browser Developer Tools, Git, Procreate
+
+# Basic setup or installation instructions
 # KemeticReference — initial scaffold
 
 ## Included
