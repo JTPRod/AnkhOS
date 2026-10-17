@@ -1,0 +1,39 @@
+﻿@using KemeticReference.Models
+
+<link rel="stylesheet" href="css/crystalCard.css" />
+
+<article class="crystal-card">
+
+    @if (!string.IsNullOrWhiteSpace(Crystal.img))
+    {
+        <img src="@Crystal.img" alt="@Crystal.crystalName" />
+    }
+
+    <h2>@Crystal.crystalName</h2>
+
+    <section>
+        <h3>Uses</h3>
+        <p>@Crystal.uses</p>
+    </section>
+
+    <section>
+        <h3>Cleansing</h3>
+        <p>@Crystal.cleansing</p>
+    </section>
+
+    <section>
+        <h3>Recharging</h3>
+        <p>@Crystal.recharge</p>
+    </section>
+
+    <section>
+        <h3>Maintenance</h3>
+        <p>@Crystal.maintaince</p>
+    </section>
+
+</article>
+
+@code {
+    [Parameter, EditorRequired]
+    public Crystal Crystal { get; set; } = default!;
+}

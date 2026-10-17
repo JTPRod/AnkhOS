@@ -1,0 +1,76 @@
+﻿@page "/crystals"
+@using System.Text.Json
+@using KemeticReference.Models
+@inject IWebHostEnvironment Environment
+
+<PageTitle>Crystals</PageTitle>
+<link rel="stylesheet" href="css/kemetic.css" />
+
+<div class="crystals-page">
+
+    <h1>Crystals</h1>
+
+    <img src="images/Egyptian Sunset Gemstone Altar.png"
+         alt="Egyptian Sunset Gemstone Altar"
+         class="crystal-banner" />
+
+    @if (isLoading)
+    {
+        <p>Loading crystals...</p>
+    }
+    else if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <p>@errorMessage</p>
+    }
+    else if (crystals.Count == 0)
+    {
+        <p>No crystals found.</p>
+    }
+    else
+    {
+        <div class="crystal-grid">
+            @foreach (var crystal in crystals)
+            {
+                <CrystalCard Crystal="crystal" @key="crystal.id" />
+            }
+        </div>
+    }
+
+</div>
+
+@code {
+    private List<Crystal> crystals = new();
+    private bool isLoading = true;
+    private string errorMessage = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            string filePath = Path.Combine(
+                Environment.ContentRootPath,
+                "Data",
+                "Reference",
+                "crystals.json"
+            );
+
+            string json = await File.ReadAllTextAsync(filePath);
+
+            crystals = JsonSerializer.Deserialize<List<Crystal>>(
+                json,
+                new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                }
+            ) ?? new List<Crystal>();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Could not load crystals: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+}

@@ -5,3 +5,59 @@
 section { margin:2rem 0; scroll-margin-top:1rem; } article { overflow-wrap:anywhere; }
 a:focus-visible,input:focus-visible { outline:3px solid #1463ac; outline-offset:3px; }
 nav { line-height:2.5; }
+
+/* Only the Crystals page */
+.crystals-page {
+    background-color: #a18a54;
+    color: #382605;
+    font-family: Georgia, "Times New Roman", serif;
+    min-height: 100vh;
+    padding: 1.5rem;
+}
+
+    /* Crystals page heading */
+    .crystals-page h1 {
+        color: #493009;
+        font-family: Georgia, "Times New Roman", serif;
+        font-variant: small-caps;
+        font-weight: bold;
+        font-size: 2rem;
+        text-align: center;
+        margin: 1.5rem 0;
+    }
+
+    /* Banner image */
+    .crystals-page .crystal-banner {
+        display: block;
+        width: 100%;
+        max-height: 350px;
+        object-fit: cover;
+        border: 3px solid #d99a13;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(67, 42, 0, 0.25);
+    }
+
+    /* Crystal card grid */
+    .crystals-page .crystal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+
+    /* Page messages */
+    .crystals-page > p {
+        color: #382605;
+        text-align: center;
+    }
+
+@media (max-width: 600px) {
+    .crystals-page {
+        padding: 1rem;
+    }
+
+        .crystals-page .crystal-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+}
