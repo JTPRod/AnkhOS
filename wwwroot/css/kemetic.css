@@ -1,5 +1,9 @@
 .deity-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr)); gap:1rem; margin-top:1rem; }
-.deity-card { padding:1.2rem; border:1px solid #b8b4aa; border-radius:12px; }
+.deity-card {
+    padding: 1.2rem;
+    border: 1px solid #322405;
+    border-radius: 12px;
+}
 .notice { background:#fff4ce; color:#342900; padding:1rem; border-left:4px solid #8a6200; }
 #deity-search { display:block; width:100%; max-width:32rem; padding:.7rem; margin:.5rem 0; }
 section { margin:2rem 0; scroll-margin-top:1rem; } article { overflow-wrap:anywhere; }
