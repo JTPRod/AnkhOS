@@ -12,4 +12,8 @@ public sealed class Deity
  public List<ContentEntry> DevotionalActs { get; set; } = [];
  public List<SourceReference> Sources { get; set; } = [];
  public DateOnly? LastReviewed { get; set; }
+ public string EgyptianName { get; set; } = "";
+ public List<ContentEntry> Crystals { get; set; } = [];
+ public List<ContentEntry> DivinationMethods { get; set; } = [];
+ public List<ContentEntry> Offerings { get; set; } = [];
 }
