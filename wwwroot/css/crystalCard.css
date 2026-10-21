@@ -1,0 +1,64 @@
+﻿/* Crystal information card */
+.crystal-card {
+    background-color: #d99a13;
+    color: #382605;
+    border: 3px solid #b77c08;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 12px rgba(58, 39, 5, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow-wrap: anywhere;
+}
+
+    /* Subtle lift when hovering over a card */
+    .crystal-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 18px rgba(58, 39, 5, 0.3);
+    }
+
+    /* Crystal name */
+    .crystal-card h2 {
+        color: #493009;
+        font-family: Georgia, "Times New Roman", serif;
+        font-variant: small-caps;
+        font-size: 1.7rem;
+        text-align: center;
+        margin: 0 0 1.25rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid #b77c08;
+    }
+
+    /* Section headings */
+    .crystal-card h3 {
+        color: #493009;
+        font-family: Georgia, "Times New Roman", serif;
+        font-variant: small-caps;
+        font-size: 1.15rem;
+        text-align: left;
+        margin: 1.25rem 0 0.5rem;
+    }
+
+    /* Crystal descriptions */
+    .crystal-card p {
+        color: #382605;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin-bottom: 0.75rem;
+    }
+
+    /* Crystal images */
+    .crystal-card img {
+        display: block;
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border: 2px solid #b77c08;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+    }
+
+    /* Keyboard accessibility */
+    .crystal-card:focus-within {
+        outline: 3px solid #493009;
+        outline-offset: 3px;
+    }
