@@ -2,41 +2,133 @@
 @using KemeticReference.Models
 @inject KemeticReference.Services.DeityService Catalog
 @inject ILogger<DeityDetails> Logger
-<link rel="stylesheet" href="css/kemetic.css" />
-<a href="/">Back to deities</a>
-@if (failed) { <p role="alert">Reference information could not be loaded.</p> }
-else if (loading) { <p>Loading profile…</p> }
-else if (deity is null) { <h1>Deity not found</h1> }
+
+<a class="back-link" href="/">‹ Back</a>
+
+@if (failed)
+{
+    <p role="alert">
+        Deity information could not be loaded.
+    </p>
+}
+else if (loading)
+{
+    <p>Loading deity…</p>
+}
+else if (deity is null)
+{
+    <h1>Deity not found</h1>
+}
 else
 {
- <PageTitle>@deity.Name</PageTitle>
- <h1>@deity.Name</h1><p>@deity.Summary</p>
- @if (deity.IsPlaceholder) { <p class="notice">Development placeholder. No reviewed content has been added.</p> }
- <nav aria-label="Profile sections"><a href="#background">Background</a> · <a href="#associations">Associations</a> · <a href="#worship">Worship practices</a> · <a href="#devotion">Devotional acts</a> · <a href="#sources">Sources</a></nav>
- <ContentSection Title="Background" SectionId="background" Entries="deity.Background" />
- <ContentSection Title="Symbols and associations" SectionId="associations" Entries="deity.Associations" />
- <ContentSection Title="Worship practices" SectionId="worship" Entries="deity.WorshipPractices" />
- <ContentSection Title="Devotional acts" SectionId="devotion" Entries="deity.DevotionalActs" />
- <section id="sources"><h2>Sources</h2>
- @if (deity.Sources.Count == 0) { <p>No reviewed sources added yet.</p> }
- @foreach (var source in deity.Sources) {
-  <article id="@($"source-{source.Id}")"><h3>@source.Title</h3><p>@source.Author — @source.PublicationDetails</p>
-   @if (source.Url is not null) { <a href="@source.Url">Read source</a> }
-  </article>
- }
- </section>
- <p>Last reviewed: @(deity.LastReviewed?.ToString("yyyy-MM-dd") ?? "Not reviewed")</p>
- <a href="@($"/deities/{Id}/community")">Community experiences and practices</a>
+    <PageTitle>AnkhOS — @deity.Name</PageTitle>
+
+    <div class="deity-detail">
+        <header class="deity-name-banner">
+            <h1>@deity.Name</h1>
+
+            @if (!string.IsNullOrWhiteSpace(deity.EgyptianName))
+            {
+                <span class="egyptian-name">
+                    @deity.EgyptianName
+                </span>
+            }
+        </header>
+
+        <div class="deity-detail-grid">
+            <div class="deity-information">
+                <div class="information-panel">
+                    <DeityDropdown Title="Crystals"
+                                   Entries="deity.Crystals" />
+
+                    <DeityDropdown Title="Signs/Symbols"
+                                   Entries="deity.Associations" />
+
+                    <DeityDropdown Title="Devotional Acts"
+                                   Entries="deity.DevotionalActs" />
+
+                    <DeityDropdown Title="Divination Methods"
+                                   Entries="deity.DivinationMethods" />
+
+                    <DeityDropdown Title="Worship Practices"
+                                   Entries="deity.WorshipPractices" />
+
+                    <DeityDropdown Title="Offerings"
+                                   Entries="deity.Offerings" />
+
+                    <DeityDropdown Title="Stories/Lore"
+                                   Entries="deity.Background" />
+                </div>
+
+                <section class="sources-panel" id="sources">
+                    <h2>Sources</h2>
+
+                    @if (deity.Sources.Count == 0)
+                    {
+                        <p>No reviewed sources added yet.</p>
+                    }
+
+                    @foreach (var source in deity.Sources)
+                    {
+                        <article id="@($"source-{source.Id}")">
+                            <h3>@source.Title</h3>
+
+                            <p>
+                                @source.Author
+                                — @source.PublicationDetails
+                            </p>
+
+                            @if (source.Url is not null)
+                            {
+                                <a href="@source.Url">
+                                    Read source
+                                </a>
+                            }
+                        </article>
+                    }
+
+                    <p class="review-date">
+                        Last reviewed:
+                        @(deity.LastReviewed?.ToString("yyyy-MM-dd")
+                            ?? "Not reviewed")
+                    </p>
+                </section>
+            </div>
+
+            <div class="deity-artwork">
+                <img src="@($"/images/deities/{deity.Id}.png")"
+                     alt="@($"Illustration of {deity.Name}")" />
+            </div>
+        </div>
+    </div>
 }
+
 @code {
- [Parameter] public string Id { get; set; } = "";
- private Deity? deity;
- private bool loading = true, failed;
- protected override async Task OnParametersSetAsync()
- {
-  loading = true; failed = false; deity = null;
-  try { deity = await Catalog.GetByIdAsync(Id); }
-  catch (Exception ex) { Logger.LogError(ex, "Profile loading failed"); failed = true; }
-  finally { loading = false; }
- }
+    [Parameter]
+    public string Id { get; set; } = "";
+
+    private Deity? deity;
+    private bool loading = true;
+    private bool failed;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        loading = true;
+        failed = false;
+        deity = null;
+
+        try
+        {
+            deity = await Catalog.GetByIdAsync(Id);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Could not load deity profile.");
+            failed = true;
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
 }
