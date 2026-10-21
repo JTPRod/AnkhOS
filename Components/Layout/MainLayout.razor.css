@@ -20,7 +20,7 @@
     flex-shrink: 0;
     color: #493700;
     font-family: Georgia, serif;
-    font-size: 22px;
+    font-size: 45px;
     font-style: italic;
     font-weight: bold;
     text-decoration: none;
@@ -30,6 +30,12 @@
         font-size: 32px;
         line-height: 1;
     }
+
+.brand-logo {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+}
 
 .header-search {
     display: flex;
