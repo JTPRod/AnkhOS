@@ -1,7 +1,19 @@
 @using KemeticReference.Models
-<article class="deity-card">
- <h2><a href="@($"/deities/{Deity.Id}")">@Deity.Name</a></h2>
- <p>@Deity.Summary</p>
- @if (Deity.IsPlaceholder) { <strong>Development placeholder</strong> }
-</article>
-@code { [Parameter, EditorRequired] public Deity Deity { get; set; } = default!; }
+
+<a class="deity-tile"
+   href="@($"/deities/{Deity.Id}")">
+
+    <span class="deity-tile-name">
+        @Deity.Name
+    </span>
+
+    <img class="deity-tile-image"
+         src="@($"/images/deities/{Deity.Id}.png")"
+         alt=""
+         loading="lazy" />
+</a>
+
+@code {
+    [Parameter, EditorRequired]
+    public Deity Deity { get; set; } = default!;
+}

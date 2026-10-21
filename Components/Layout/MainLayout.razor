@@ -1,23 +1,47 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+<div class="ankh-layout">
+    <header class="ankh-header">
+        <a class="brand" href="/">
+            <span aria-hidden="true">☥</span>
+            AnkhOS
+        </a>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
+        <form class="header-search" action="/" method="get">
+            <input type="search"
+                   name="q"
+                   placeholder="Search"
+                   aria-label="Search deities" />
 
-        <article class="content px-4">
-            @Body
-        </article>
+            <button type="submit" aria-label="Search">
+                &#128269;
+            </button>
+        </form>
+
+        <AuthorizeView>
+            <Authorized>
+                <a class="profile-link" href="/my-profile">
+                    My profile
+                    <span aria-hidden="true">●</span>
+                </a>
+            </Authorized>
+
+            <NotAuthorized>
+                <a class="profile-link" href="/Account/Login">
+                    Sign in
+                    <span aria-hidden="true">●</span>
+                </a>
+            </NotAuthorized>
+        </AuthorizeView>
+    </header>
+
+    <main class="ankh-content">
+        @Body
     </main>
 </div>
 
 <div id="blazor-error-ui" data-nosnippet>
-    An unhandled error has occurred.
+    An unexpected error occurred.
     <a href="." class="reload">Reload</a>
-    <span class="dismiss">🗙</span>
+    <a class="dismiss">✕</a>
 </div>

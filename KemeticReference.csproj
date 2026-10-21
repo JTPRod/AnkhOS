@@ -20,5 +20,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.12" />
   </ItemGroup>
 
-<ItemGroup><None Update="Data/Reference/deities.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" /></ItemGroup></Project>
+<ItemGroup><None Update="Data/Reference/deities.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" /></ItemGroup>
+
+<ItemGroup>
+  <Folder Include="wwwroot\images\Deities\" />
+</ItemGroup></Project>
 
