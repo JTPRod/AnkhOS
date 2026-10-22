@@ -1,15 +1,15 @@
 @page "/deities/{Id}"
 @using KemeticReference.Models
+@using System.Text.Json
 @inject KemeticReference.Services.DeityService Catalog
 @inject ILogger<DeityDetails> Logger
+@inject IHostEnvironment Environment
 
 <a class="back-link" href="/">‹ Back</a>
 
 @if (failed)
 {
-    <p role="alert">
-        Deity information could not be loaded.
-    </p>
+    <p role="alert">Deity information could not be loaded.</p>
 }
 else if (loading)
 {
@@ -38,8 +38,34 @@ else
         <div class="deity-detail-grid">
             <div class="deity-information">
                 <div class="information-panel">
-                    <DeityDropdown Title="Crystals"
-                                   Entries="deity.Crystals" />
+                    <details class="deity-dropdown crystals-dropdown">
+                        <summary>
+                            <span>Crystals</span>
+                            <span class="dropdown-arrow">⌄</span>
+                        </summary>
+
+                        <div class="dropdown-content">
+                            @if (deityCrystals.Count == 0)
+                            {
+                                <p class="empty-crystals">No crystals listed.</p>
+                            }
+                            else
+                            {
+                                <div class="crystal-grid">
+                                    @foreach (var crystal in deityCrystals)
+                                    {
+                                        <article class="crystal-preview">
+                                            <img src="@($"/{crystal.img.TrimStart('/')}")"
+                                                 alt="@crystal.crystalName"
+                                                 loading="lazy" />
+
+                                            <h3>@crystal.crystalName</h3>
+                                        </article>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </details>
 
                     <DeityDropdown Title="Signs/Symbols"
                                    Entries="deity.Associations" />
@@ -80,9 +106,7 @@ else
 
                             @if (source.Url is not null)
                             {
-                                <a href="@source.Url">
-                                    Read source
-                                </a>
+                                <a href="@source.Url">Read source</a>
                             }
                         </article>
                     }
@@ -107,6 +131,8 @@ else
     [Parameter]
     public string Id { get; set; } = "";
 
+    private List<Crystal> deityCrystals = [];
+
     private Deity? deity;
     private bool loading = true;
     private bool failed;
@@ -116,10 +142,36 @@ else
         loading = true;
         failed = false;
         deity = null;
+        deityCrystals = [];
 
         try
         {
             deity = await Catalog.GetByIdAsync(Id);
+
+            if (deity is not null && deity.Crystals.Count > 0)
+            {
+                string filePath = Path.Combine(
+                    Environment.ContentRootPath,
+                    "Data",
+                    "Reference",
+                    "crystals.json");
+
+                string json = await File.ReadAllTextAsync(filePath);
+
+                List<Crystal> crystalCatalog =
+                    JsonSerializer.Deserialize<List<Crystal>>(
+                        json,
+                        new JsonSerializerOptions
+                        {
+                            PropertyNameCaseInsensitive = true
+                        }) ?? [];
+
+                deityCrystals = crystalCatalog
+                    .Where(crystal => deity.Crystals.Contains(
+                        crystal.crystalName,
+                        StringComparer.OrdinalIgnoreCase))
+                    .ToList();
+            }
         }
         catch (Exception ex)
         {

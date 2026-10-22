@@ -1,6 +1,6 @@
 [
   {
-    "id": "babingtonite",
+    "id": "Babingtonite",
     "crystalName": "Babingtonite",
     "img": "images/crystal-Images/Babingtonite.jpg",
     "uses": " Hold it during meditation when reflecting on change or personal growth. Place it on your altar as a symbol of transition and spiritual guidance. Use it as a focus during prayers or moments of quiet reflection.",
@@ -9,7 +9,7 @@
     "maintaince": "Protect its crystal points from impacts. Store it in a padded compartment rather than loose with harder stones. Avoid abrasive brushes, chemical cleaners, and unnecessary moisture."
   },
   {
-    "id": "augite",
+    "id": "Augite",
     "crystalName": "Augite",
     "img": "images/crystal-Images/Augite.jpg",
     "uses": "Keep it on your altar as a reminder to remain grounded. Hold it during meditation when you want to focus on stability or personal boundaries. Use it as a physical reminder to pause and reflect before making decisions",
@@ -84,6 +84,123 @@
     "id": "Malachite",
     "crystalName": "Malachite",
     "img": "images/crystal-Images/Malachite.jpg",
+    "uses": "Place it on your altar when reflecting on transformation or renewal. Hold it during meditation focused on personal growth. Use it as a symbol of regeneration and the cycles of change.",
+    "cleansing": "Gently wipe the surface with a soft, dry cloth. Do not soak it or use salt water, acids, or household cleaning products. Avoid sanding, grinding, drilling, or abrading it, as malachite dust can be hazardous.",
+    "recharge": "Use moonlight in a dry, sheltered location. Try a gentle sound-cleansing ritual. Hold the stone while reflecting on an intention related to renewal or transformation.",
+    "maintaince": "Keep it dry and protect it from heat and impacts. Store it separately to avoid scratches. Wash your hands after handling damaged or dusty specimens, and keep the stone and any fragments away from children and pets."
+  },
+  {
+    "id": "Black Obsidion",
+    "crystalName": "Black Obsidion",
+    "img": "images/crystal-Images/BlackObsidion.jpg",
+    "uses": "Place it on your altar when reflecting on transformation or renewal. Hold it during meditation focused on personal growth. Use it as a symbol of regeneration and the cycles of change.",
+    "cleansing": "Gently wipe the surface with a soft, dry cloth. Do not soak it or use salt water, acids, or household cleaning products. Avoid sanding, grinding, drilling, or abrading it, as malachite dust can be hazardous.",
+    "recharge": "Use moonlight in a dry, sheltered location. Try a gentle sound-cleansing ritual. Hold the stone while reflecting on an intention related to renewal or transformation.",
+    "maintaince": "Keep it dry and protect it from heat and impacts. Store it separately to avoid scratches. Wash your hands after handling damaged or dusty specimens, and keep the stone and any fragments away from children and pets."
+  },
+  {
+    "id": "Green Aventurine",
+    "crystalName": "Green Aventurine",
+    "img": "images/crystal-Images/GreenAventurine.jpg",
+    "uses": "Place it on your altar when reflecting on transformation or renewal. Hold it during meditation focused on personal growth. Use it as a symbol of regeneration and the cycles of change.",
+    "cleansing": "Gently wipe the surface with a soft, dry cloth. Do not soak it or use salt water, acids, or household cleaning products. Avoid sanding, grinding, drilling, or abrading it, as malachite dust can be hazardous.",
+    "recharge": "Use moonlight in a dry, sheltered location. Try a gentle sound-cleansing ritual. Hold the stone while reflecting on an intention related to renewal or transformation.",
+    "maintaince": "Keep it dry and protect it from heat and impacts. Store it separately to avoid scratches. Wash your hands after handling damaged or dusty specimens, and keep the stone and any fragments away from children and pets."
+  },
+  {
+    "id": "Rose Quartz",
+    "crystalName": "Rose Quartz",
+    "img": "images/crystal-Images/RoseQuartz.jpg",
+    "uses": "Place it on your altar when reflecting on transformation or renewal. Hold it during meditation focused on personal growth. Use it as a symbol of regeneration and the cycles of change.",
+    "cleansing": "Gently wipe the surface with a soft, dry cloth. Do not soak it or use salt water, acids, or household cleaning products. Avoid sanding, grinding, drilling, or abrading it, as malachite dust can be hazardous.",
+    "recharge": "Use moonlight in a dry, sheltered location. Try a gentle sound-cleansing ritual. Hold the stone while reflecting on an intention related to renewal or transformation.",
+    "maintaince": "Keep it dry and protect it from heat and impacts. Store it separately to avoid scratches. Wash your hands after handling damaged or dusty specimens, and keep the stone and any fragments away from children and pets."
+  },
+  {
+    "id": "Mangano Calcite",
+    "crystalName": "Mangano Calcite",
+    "img": "images/crystal-Images/Mangano.jpg",
+    "uses": "Place it on your altar when reflecting on transformation or renewal. Hold it during meditation focused on personal growth. Use it as a symbol of regeneration and the cycles of change.",
+    "cleansing": "Gently wipe the surface with a soft, dry cloth. Do not soak it or use salt water, acids, or household cleaning products. Avoid sanding, grinding, drilling, or abrading it, as malachite dust can be hazardous.",
+    "recharge": "Use moonlight in a dry, sheltered location. Try a gentle sound-cleansing ritual. Hold the stone while reflecting on an intention related to renewal or transformation.",
+    "maintaince": "Keep it dry and protect it from heat and impacts. Store it separately to avoid scratches. Wash your hands after handling damaged or dusty specimens, and keep the stone and any fragments away from children and pets."
+  },
+  {
+    "id": "Tigers Eye",
+    "crystalName": "Tigers Eye",
+    "img": "images/crystal-Images/TigersEye.jpg",
+    "uses": "Place it on your altar when reflecting on transformation or renewal. Hold it during meditation focused on personal growth. Use it as a symbol of regeneration and the cycles of change.",
+    "cleansing": "Gently wipe the surface with a soft, dry cloth. Do not soak it or use salt water, acids, or household cleaning products. Avoid sanding, grinding, drilling, or abrading it, as malachite dust can be hazardous.",
+    "recharge": "Use moonlight in a dry, sheltered location. Try a gentle sound-cleansing ritual. Hold the stone while reflecting on an intention related to renewal or transformation.",
+    "maintaince": "Keep it dry and protect it from heat and impacts. Store it separately to avoid scratches. Wash your hands after handling damaged or dusty specimens, and keep the stone and any fragments away from children and pets."
+  },
+  {
+    "id": "Cats Eye",
+    "crystalName": "Cats Eye",
+    "img": "images/crystal-Images/CatsEye.jpg",
+    "uses": "Place it on your altar when reflecting on transformation or renewal. Hold it during meditation focused on personal growth. Use it as a symbol of regeneration and the cycles of change.",
+    "cleansing": "Gently wipe the surface with a soft, dry cloth. Do not soak it or use salt water, acids, or household cleaning products. Avoid sanding, grinding, drilling, or abrading it, as malachite dust can be hazardous.",
+    "recharge": "Use moonlight in a dry, sheltered location. Try a gentle sound-cleansing ritual. Hold the stone while reflecting on an intention related to renewal or transformation.",
+    "maintaince": "Keep it dry and protect it from heat and impacts. Store it separately to avoid scratches. Wash your hands after handling damaged or dusty specimens, and keep the stone and any fragments away from children and pets."
+  },
+  {
+    "id": "Amethyst",
+    "crystalName": "Amethyst",
+    "img": "images/crystal-Images/Amethyst.jpg",
+    "uses": "Place it on your altar when reflecting on transformation or renewal. Hold it during meditation focused on personal growth. Use it as a symbol of regeneration and the cycles of change.",
+    "cleansing": "Gently wipe the surface with a soft, dry cloth. Do not soak it or use salt water, acids, or household cleaning products. Avoid sanding, grinding, drilling, or abrading it, as malachite dust can be hazardous.",
+    "recharge": "Use moonlight in a dry, sheltered location. Try a gentle sound-cleansing ritual. Hold the stone while reflecting on an intention related to renewal or transformation.",
+    "maintaince": "Keep it dry and protect it from heat and impacts. Store it separately to avoid scratches. Wash your hands after handling damaged or dusty specimens, and keep the stone and any fragments away from children and pets."
+  },
+  {
+    "id": "Moss Agate",
+    "crystalName": "Moss Agate",
+    "img": "images/crystal-Images/MossAgate.jpg",
+    "uses": "Place it on your altar when reflecting on transformation or renewal. Hold it during meditation focused on personal growth. Use it as a symbol of regeneration and the cycles of change.",
+    "cleansing": "Gently wipe the surface with a soft, dry cloth. Do not soak it or use salt water, acids, or household cleaning products. Avoid sanding, grinding, drilling, or abrading it, as malachite dust can be hazardous.",
+    "recharge": "Use moonlight in a dry, sheltered location. Try a gentle sound-cleansing ritual. Hold the stone while reflecting on an intention related to renewal or transformation.",
+    "maintaince": "Keep it dry and protect it from heat and impacts. Store it separately to avoid scratches. Wash your hands after handling damaged or dusty specimens, and keep the stone and any fragments away from children and pets."
+  },
+  {
+    "id": "Green Serpentine",
+    "crystalName": "Green Serpentine",
+    "img": "images/crystal-Images/GreenSerpentine.jpg",
+    "uses": "Place it on your altar when reflecting on transformation or renewal. Hold it during meditation focused on personal growth. Use it as a symbol of regeneration and the cycles of change.",
+    "cleansing": "Gently wipe the surface with a soft, dry cloth. Do not soak it or use salt water, acids, or household cleaning products. Avoid sanding, grinding, drilling, or abrading it, as malachite dust can be hazardous.",
+    "recharge": "Use moonlight in a dry, sheltered location. Try a gentle sound-cleansing ritual. Hold the stone while reflecting on an intention related to renewal or transformation.",
+    "maintaince": "Keep it dry and protect it from heat and impacts. Store it separately to avoid scratches. Wash your hands after handling damaged or dusty specimens, and keep the stone and any fragments away from children and pets."
+  },
+  {
+    "id": "Citrine",
+    "crystalName": "Citrine",
+    "img": "images/crystal-Images/Citrine.jpg",
+    "uses": "Place it on your altar when reflecting on transformation or renewal. Hold it during meditation focused on personal growth. Use it as a symbol of regeneration and the cycles of change.",
+    "cleansing": "Gently wipe the surface with a soft, dry cloth. Do not soak it or use salt water, acids, or household cleaning products. Avoid sanding, grinding, drilling, or abrading it, as malachite dust can be hazardous.",
+    "recharge": "Use moonlight in a dry, sheltered location. Try a gentle sound-cleansing ritual. Hold the stone while reflecting on an intention related to renewal or transformation.",
+    "maintaince": "Keep it dry and protect it from heat and impacts. Store it separately to avoid scratches. Wash your hands after handling damaged or dusty specimens, and keep the stone and any fragments away from children and pets."
+  },
+  {
+    "id": "Sunstone",
+    "crystalName": "Sunstone",
+    "img": "images/crystal-Images/Sunstone.jpg",
+    "uses": "Place it on your altar when reflecting on transformation or renewal. Hold it during meditation focused on personal growth. Use it as a symbol of regeneration and the cycles of change.",
+    "cleansing": "Gently wipe the surface with a soft, dry cloth. Do not soak it or use salt water, acids, or household cleaning products. Avoid sanding, grinding, drilling, or abrading it, as malachite dust can be hazardous.",
+    "recharge": "Use moonlight in a dry, sheltered location. Try a gentle sound-cleansing ritual. Hold the stone while reflecting on an intention related to renewal or transformation.",
+    "maintaince": "Keep it dry and protect it from heat and impacts. Store it separately to avoid scratches. Wash your hands after handling damaged or dusty specimens, and keep the stone and any fragments away from children and pets."
+  },
+  {
+    "id": "Yellow Calcite",
+    "crystalName": "Yellow Calcite",
+    "img": "images/crystal-Images/YellowCalcite.jpg",
+    "uses": "Place it on your altar when reflecting on transformation or renewal. Hold it during meditation focused on personal growth. Use it as a symbol of regeneration and the cycles of change.",
+    "cleansing": "Gently wipe the surface with a soft, dry cloth. Do not soak it or use salt water, acids, or household cleaning products. Avoid sanding, grinding, drilling, or abrading it, as malachite dust can be hazardous.",
+    "recharge": "Use moonlight in a dry, sheltered location. Try a gentle sound-cleansing ritual. Hold the stone while reflecting on an intention related to renewal or transformation.",
+    "maintaince": "Keep it dry and protect it from heat and impacts. Store it separately to avoid scratches. Wash your hands after handling damaged or dusty specimens, and keep the stone and any fragments away from children and pets."
+  },
+  {
+    "id": "Red Jasper",
+    "crystalName": "Red Jasper",
+    "img": "images/crystal-Images/RedJasper.jpg",
     "uses": "Place it on your altar when reflecting on transformation or renewal. Hold it during meditation focused on personal growth. Use it as a symbol of regeneration and the cycles of change.",
     "cleansing": "Gently wipe the surface with a soft, dry cloth. Do not soak it or use salt water, acids, or household cleaning products. Avoid sanding, grinding, drilling, or abrading it, as malachite dust can be hazardous.",
     "recharge": "Use moonlight in a dry, sheltered location. Try a gentle sound-cleansing ritual. Hold the stone while reflecting on an intention related to renewal or transformation.",
