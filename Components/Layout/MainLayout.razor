@@ -9,29 +9,26 @@
             AnkhOS
         </a>
 
-        <form class="header-search" action="/" method="get">
-            <input type="search"
-                   name="q"
-                   placeholder="Search"
-                   aria-label="Search deities" />
-
-            <button type="submit" aria-label="Search">
-                &#128269;
-            </button>
-        </form>
+        <DeitySearchBar />
 
         <AuthorizeView>
-            <Authorized>
+            <Authorized Context="auth">
                 <a class="profile-link" href="/my-profile">
-                    My profile
-                    <span aria-hidden="true">●</span>
+                    <span>@auth.User.Identity?.Name</span>
+
+                    <img class="profile-avatar"
+                         src="/images/default-profile.png"
+                         alt="Profile" />
                 </a>
             </Authorized>
 
             <NotAuthorized>
                 <a class="profile-link" href="/Account/Login">
-                    Sign in
-                    <span aria-hidden="true">●</span>
+                    <span>Sign in</span>
+
+                    <img class="profile-avatar"
+                         src="/images/default-profile.png"
+                         alt="" />
                 </a>
             </NotAuthorized>
         </AuthorizeView>

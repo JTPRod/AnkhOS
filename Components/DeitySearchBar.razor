@@ -1,0 +1,63 @@
+﻿@rendermode InteractiveServer
+@using Microsoft.AspNetCore.WebUtilities
+@inject KemeticReference.Services.DeitySearchState Search
+@inject NavigationManager Navigation
+
+<form class="header-search"
+      @onsubmit="SubmitSearch"
+      @onsubmit:preventDefault>
+
+    <input type="search"
+           placeholder="Search"
+           aria-label="Search deities"
+           value="@Search.Query"
+           @oninput="UpdateSearch" />
+
+    <button type="submit" aria-label="Search">
+        &#128269;
+    </button>
+</form>
+
+@code {
+    protected override void OnInitialized()
+    {
+        var uri = Navigation.ToAbsoluteUri(Navigation.Uri);
+        var parameters = QueryHelpers.ParseQuery(uri.Query);
+
+        Search.SetQuery(
+            parameters.TryGetValue("q", out var query)
+                ? query.ToString()
+                : "");
+    }
+
+    private void UpdateSearch(ChangeEventArgs args)
+    {
+        Search.SetQuery(args.Value?.ToString());
+
+        // Searching from another page opens the deity list.
+        if (!IsHomePage())
+        {
+            OpenSearchResults();
+        }
+    }
+
+    private void SubmitSearch()
+    {
+        if (!IsHomePage())
+        {
+            OpenSearchResults();
+        }
+    }
+
+    private bool IsHomePage()
+    {
+        var path = Navigation.ToBaseRelativePath(Navigation.Uri);
+        return string.IsNullOrEmpty(path.Split('?', '#')[0]);
+    }
+
+    private void OpenSearchResults()
+    {
+        Navigation.NavigateTo(
+            "/?q=" + Uri.EscapeDataString(Search.Query));
+    }
+}

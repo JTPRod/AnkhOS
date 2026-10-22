@@ -39,6 +39,7 @@ builder.Services.AddIdentityCore<ApplicationUser>(options =>
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 
 builder.Services.AddSingleton<KemeticReference.Services.DeityService>();
+builder.Services.AddScoped<KemeticReference.Services.DeitySearchState>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

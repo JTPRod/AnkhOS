@@ -5,12 +5,17 @@
 }
 
 .ankh-header {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+    align-items: center;
     align-items: center;
     gap: 16px;
     min-height: 54px;
     padding: 6px 16px;
     background: #d99b0b;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .brand {
@@ -20,7 +25,7 @@
     flex-shrink: 0;
     color: #493700;
     font-family: Georgia, serif;
-    font-size: 45px;
+    font-size: 30px;
     font-style: italic;
     font-weight: bold;
     text-decoration: none;
@@ -32,8 +37,8 @@
     }
 
 .brand-logo {
-    width: 64px;
-    height: 64px;
+    width: 45px;
+    height: 45px;
     object-fit: contain;
 }
 
@@ -83,10 +88,12 @@
     font-style: italic;
     font-weight: bold;
     text-decoration: none;
+    justify-self: end;
+    font-size: 20px;
 }
 
     .profile-link span {
-        font-size: 26px;
+        font-size: inherit;
     }
 
 .ankh-content {
@@ -118,11 +125,20 @@ input:focus-visible {
         cursor: pointer;
     }
 
+.profile-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
 @media (max-width: 600px) {
     .ankh-header {
         flex-wrap: wrap;
         gap: 8px;
         padding: 8px 12px;
+        grid-template-columns: minmax(0, 1fr) auto;
     }
 
     .header-search {

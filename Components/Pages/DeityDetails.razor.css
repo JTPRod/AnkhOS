@@ -51,7 +51,7 @@
 
 .deity-detail-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 58fr) minmax(0, 42fr);
     gap: 24px;
     margin-top: 12px;
 }
@@ -68,18 +68,18 @@
 
 .deity-artwork {
     position: relative;
+    align-self: start;
     min-width: 0;
-    margin-top: -155px;
+    margin-top: -200px;
     pointer-events: none;
+    z-index: 1;
 }
 
     .deity-artwork img {
         display: block;
         width: 100%;
         height: auto;
-        max-height: 950px;
-        object-fit: contain;
-        object-position: top center;
+        max-height: none;
     }
 
 .sources-panel {
@@ -137,7 +137,7 @@
     }
 
         .deity-artwork img {
-            max-height: 600px;
+            max-height: none;
         }
 
     .deity-name-banner {

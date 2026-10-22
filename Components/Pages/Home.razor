@@ -1,6 +1,9 @@
 @page "/"
+@rendermode InteractiveServer
+@implements IDisposable
 @using KemeticReference.Models
 @inject KemeticReference.Services.DeityService Catalog
+@inject KemeticReference.Services.DeitySearchState Search
 @inject ILogger<Home> Logger
 
 <PageTitle>AnkhOS — Deities</PageTitle>
@@ -19,18 +22,23 @@ else if (deities is null)
 }
 else
 {
-    @if (!string.IsNullOrWhiteSpace(Query))
+    @if (!string.IsNullOrWhiteSpace(Search.Query))
     {
         <p class="search-summary">
-            Results for “@Query”
-            <a href="/">Clear search</a>
+            Results for “@Search.Query”
+
+            <button type="button"
+                    class="clear-search"
+                    @onclick="ClearSearch">
+                Clear search
+            </button>
         </p>
     }
 
     <div class="deity-grid">
         @foreach (var deity in FilteredDeities)
         {
-            <DeityCard Deity="deity" />
+            <DeityCard @key="deity.Id" Deity="deity" />
         }
     </div>
 
@@ -51,7 +59,7 @@ else
     {
         get
         {
-            var search = Query?.Trim() ?? "";
+            var search = Search.Query.Trim();
 
             return (deities ?? Array.Empty<Deity>())
                 .Where(deity =>
@@ -68,6 +76,8 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        Search.Changed += OnSearchChanged;
+
         try
         {
             deities = await Catalog.GetAllAsync();
@@ -77,5 +87,25 @@ else
             Logger.LogError(ex, "Could not load deity catalog.");
             failed = true;
         }
+    }
+
+    protected override void OnParametersSet()
+    {
+        Search.SetQuery(Query);
+    }
+
+    private void OnSearchChanged()
+    {
+        _ = InvokeAsync(StateHasChanged);
+    }
+
+    private void ClearSearch()
+    {
+        Search.SetQuery("");
+    }
+
+    public void Dispose()
+    {
+        Search.Changed -= OnSearchChanged;
     }
 }
