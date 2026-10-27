@@ -3,14 +3,23 @@
 <a class="deity-tile"
    href="@($"/deities/{Deity.Id}")">
 
+    <img class="deity-tile-image"
+         src="@($"/images/deities/{Deity.Id}.png")"
+         alt="" />
+
     <span class="deity-tile-name">
         @Deity.Name
     </span>
 
-    <img class="deity-tile-image"
-         src="@($"/images/deities/{Deity.Id}.png")"
-         alt=""
-         loading="lazy" />
+    <span class="deity-tile-overlay" aria-hidden="true"></span>
+
+    <span class="deity-tile-egyptian-name">
+        @Deity.EgyptianName
+    </span>
+
+    <span class="deity-tile-description">
+        @Deity.Summary
+    </span>
 </a>
 
 @code {

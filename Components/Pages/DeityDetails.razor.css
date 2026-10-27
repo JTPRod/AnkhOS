@@ -163,25 +163,6 @@
     color: #d2ad50;
 }
 
-/* Dropdown heading */
-.crystals-dropdown summary {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 8px;
-    padding: 12px 0;
-    margin: 0;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    color: #d2ad50;
-    font-family: Georgia, serif;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    list-style: none;
-}
-
     /* Remove browser's default arrow */
     .crystals-dropdown summary::-webkit-details-marker {
         display: none;
