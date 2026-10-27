@@ -61,6 +61,20 @@
     outline-offset: 3px;
 }
 
+/* Shared heading style for all deity dropdowns */
+.deity-dropdown summary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0px 0;
+    color: #d2ad50;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    font-weight: bold;
+    font-variant: small-caps;
+    cursor: pointer;
+}
+
 .search-summary {
     color: #302400;
 }
@@ -80,6 +94,173 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
+.section-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* The dark cabinet behind the folders */
+.section-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 10px;
+    padding: 14px 14px 0;
+    margin-bottom: 20px;
+    border-radius: 14px 14px 0 0;
+    background-color: #302400;
+}
+
+    /* Each clickable folder */
+    .section-navigation a {
+        position: relative;
+        display: inline-block;
+        margin-top: 10px;
+        padding: 12px 18px;
+        border-radius: 0 9px 0 0;
+        background-color: #b49249;
+        color: #493700;
+        font-family: Georgia, serif;
+        font-size: 30px;
+        font-weight: bold;
+        font-variant: small-caps;
+        text-decoration: none;
+    }
+
+        /* The raised tab on top of each folder */
+        .section-navigation a::before {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            width: 45%;
+            height: 10px;
+            border-radius: 8px 8px 0 0;
+            background-color: inherit;
+        }
+
+        .section-navigation a:hover,
+        .section-navigation a:focus-visible {
+            background-color: #dfb75e;
+            color: #302400;
+        }
+
+        .section-navigation a:focus-visible {
+            outline: 3px solid #ffffff;
+            outline-offset: 3px;
+        }
+
+        .section-navigation a:hover,
+        .section-navigation a:focus-visible {
+            background-color: #574211;
+            color: #ffffff;
+        }
+
+        .section-navigation a.active {
+            background-color: #a69b75;
+            color: #302400;
+        }
+
+
+/* Light overlay covering the card */
+.deity-tile-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.25);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+/* Keep the deity name above the overlay */
+.deity-tile-name {
+    z-index: 2;
+}
+
+/* Egyptian name beneath the deity name */
+.deity-tile-egyptian-name {
+    position: absolute;
+    top: 67px;
+    left: 12px;
+    z-index: 2;
+    color: white;
+    font-family: Georgia, serif;
+    font-size: 20px;
+    font-weight: bold;
+    font-variant: small-caps;
+    text-shadow: 1px 1px 3px black;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+/* Description near the bottom */
+.deity-tile-description {
+    position: absolute;
+    right: 12px;
+    bottom: 30px;
+    left: 12px;
+    z-index: 2;
+    color: white;
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-weight: bold;
+    font-variant: small-caps;
+    line-height: 1.4;
+    text-shadow: 1px 1px 3px black;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+/* Show the overlay and text on hover or keyboard focus */
+.deity-tile:hover .deity-tile-overlay,
+.deity-tile:hover .deity-tile-egyptian-name,
+.deity-tile:hover .deity-tile-description,
+.deity-tile:focus-visible .deity-tile-overlay,
+.deity-tile:focus-visible .deity-tile-egyptian-name,
+.deity-tile:focus-visible .deity-tile-description {
+    opacity: 1;
+}
+
+/* The box that appears when a dropdown is opened */
+.deity-dropdown .dropdown-content {
+    margin: 0 0 12px;
+    padding: 16px 24px;
+    border-radius: 35px;
+    background-color: #625134;
+    color: #f1e3bc;
+}
+
+/* Bulleted information inside the box */
+.deity-dropdown .information-list {
+    margin: 0;
+    padding-left: 48px;
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: bold;
+    font-variant: small-caps;
+}
+
+/* Space between each bullet point */
+.deity-dropdown .information-entry {
+    margin-bottom: 8px;
+}
+
+/* Keep source and context text smaller than the main entry */
+.deity-dropdown .entry-context,
+.deity-dropdown .entry-sources {
+    margin: 4px 0;
+    font-size: 16px;
+    font-weight: normal;
+    font-variant: normal;
+}
+
+    .deity-dropdown .entry-sources a {
+        color: #ffe09a;
+    }
 
 @media (max-width: 900px) {
     .deity-grid {

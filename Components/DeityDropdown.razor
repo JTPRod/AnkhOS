@@ -9,40 +9,42 @@
             <p>No reviewed information available.</p>
         }
         else
-        {
-            @foreach (var entry in Entries)
-            {
-                <article class="information-entry">
-                    <p>@entry.Text</p>
-
-                    @if (!string.IsNullOrWhiteSpace(entry.EvidenceType))
+                {
+                <ul class="information-list">
+                    @foreach (var entry in Entries)
                     {
-                        <p class="entry-context">
-                            @entry.EvidenceType
-                        </p>
-                    }
+                        <li class="information-entry">
+                            <span>@entry.Text</span>
 
-                    @if (!string.IsNullOrWhiteSpace(entry.Context))
-                    {
-                        <p class="entry-context">
-                            @entry.Context
-                        </p>
-                    }
-
-                    @if (entry.SourceIds.Count > 0)
-                    {
-                        <div class="entry-sources">
-                            Sources:
-                            @foreach (var sourceId in entry.SourceIds)
+                            @if (!string.IsNullOrWhiteSpace(entry.EvidenceType))
                             {
-                                <a href="@($"#source-{sourceId}")">
-                                    @sourceId
-                                </a>
+                                <p class="entry-context">
+                                    @entry.EvidenceType
+                                </p>
                             }
-                        </div>
+
+                            @if (!string.IsNullOrWhiteSpace(entry.Context))
+                            {
+                                <p class="entry-context">
+                                    @entry.Context
+                                </p>
+                            }
+
+                            @if (entry.SourceIds.Count > 0)
+                            {
+                                <div class="entry-sources">
+                                    Sources:
+                                    @foreach (var sourceId in entry.SourceIds)
+                                    {
+                                        <a href="@($"#source-{sourceId}")">
+                                            @sourceId
+                                        </a>
+                                    }
+                                </div>
+                            }
+                        </li>
                     }
-                </article>
-            }
+                </ul>
         }
     </div>
 </details>
