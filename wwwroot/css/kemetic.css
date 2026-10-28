@@ -172,7 +172,7 @@
     z-index: 1;
     background-color: rgba(255, 255, 255, 0.25);
     opacity: 0;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.5s ease;
     pointer-events: none;
 }
 
@@ -256,6 +256,36 @@
     font-size: 16px;
     font-weight: normal;
     font-variant: normal;
+}
+
+/* Hide the browser's arrow */
+.deity-dropdown > summary {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    list-style: none;
+}
+
+    .deity-dropdown > summary::-webkit-details-marker {
+        display: none;
+    }
+
+    /* Draw one arrow for every dropdown */
+    .deity-dropdown > summary::after {
+        content: "";
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        flex-shrink: 0;
+        border-right: 3px solid currentColor;
+        border-bottom: 3px solid currentColor;
+        transform: rotate(45deg);
+        transition: transform 0.2s ease;
+    }
+
+/* Point right when opened */
+.deity-dropdown[open] > summary::after {
+    transform: rotate(-45deg);
 }
 
     .deity-dropdown .entry-sources a {

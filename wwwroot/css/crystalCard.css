@@ -1,8 +1,7 @@
 ﻿/* Crystal information card */
 .crystal-card {
-    background-color: #d99a13;
-    color: #382605;
-    border: 3px solid #b77c08;
+    background-color: #302400;
+    color: #302400;
     border-radius: 16px;
     padding: 1.5rem;
     box-shadow: 0 5px 12px rgba(58, 39, 5, 0.2);
@@ -18,7 +17,7 @@
 
     /* Crystal name */
     .crystal-card h2 {
-        color: #493009;
+        color: #c4ad71;
         font-family: Georgia, "Times New Roman", serif;
         font-variant: small-caps;
         font-size: 1.7rem;
@@ -30,7 +29,7 @@
 
     /* Section headings */
     .crystal-card h3 {
-        color: #493009;
+        color: #c4ad71;
         font-family: Georgia, "Times New Roman", serif;
         font-variant: small-caps;
         font-size: 1.15rem;
@@ -40,7 +39,7 @@
 
     /* Crystal descriptions */
     .crystal-card p {
-        color: #382605;
+        color: #c4ad71;
         font-size: 0.95rem;
         line-height: 1.7;
         margin-bottom: 0.75rem;
@@ -65,7 +64,6 @@
 
 
 .crystals-page {
-    background-color: #a18a54;
     color: #382605;
     font-family: Georgia, "Times New Roman", serif;
     min-height: 100vh;

@@ -34,8 +34,7 @@
     {
         Search.SetQuery(args.Value?.ToString());
 
-        // Searching from another page opens the deity list.
-        if (!IsHomePage())
+        if (!IsSearchablePage())
         {
             OpenSearchResults();
         }
@@ -43,16 +42,21 @@
 
     private void SubmitSearch()
     {
-        if (!IsHomePage())
+        if (!IsSearchablePage())
         {
             OpenSearchResults();
         }
     }
 
-    private bool IsHomePage()
+    private bool IsSearchablePage()
     {
-        var path = Navigation.ToBaseRelativePath(Navigation.Uri);
-        return string.IsNullOrEmpty(path.Split('?', '#')[0]);
+        var path = Navigation
+            .ToBaseRelativePath(Navigation.Uri)
+            .Split('?', '#')[0]
+            .Trim('/');
+
+        return string.IsNullOrEmpty(path)
+            || path.Equals("crystals", StringComparison.OrdinalIgnoreCase);
     }
 
     private void OpenSearchResults()
