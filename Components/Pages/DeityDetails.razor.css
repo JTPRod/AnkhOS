@@ -152,54 +152,6 @@
     }
 }
 
-/* Crystals dropdown — matching the other deity dropdowns */
-.crystals-dropdown {
-    width: 100%;
-    margin-bottom: 0;
-    padding: 0;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    color: #d2ad50;
-}
-
-    /* Remove browser's default arrow */
-    .crystals-dropdown summary::-webkit-details-marker {
-        display: none;
-    }
-
-    .crystals-dropdown summary::marker {
-        content: "";
-    }
-
-    /* Heading hover */
-    .crystals-dropdown summary:hover {
-        color: #f1e3bc;
-    }
-
-/* Static arrow beside the heading */
-.crystals-dropdown .dropdown-arrow {
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-    line-height: 1;
-    transition: none;
-    transform: none;
-}
-
-.crystals-dropdown[open] .dropdown-arrow {
-    transform: none;
-}
-
-/* Dropdown content */
-.crystals-dropdown .dropdown-content {
-    margin: 0;
-    padding: 12px 0;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-}
-
 /* Crystal image layout */
 .crystal-grid {
     display: grid;

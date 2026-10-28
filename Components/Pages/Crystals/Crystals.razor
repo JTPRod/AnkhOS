@@ -1,10 +1,12 @@
 ﻿@page "/crystals"
+@rendermode InteractiveServer
+@implements IDisposable
 @using System.Text.Json
 @using KemeticReference.Models
 @inject IWebHostEnvironment Environment
+@inject KemeticReference.Services.DeitySearchState Search
 
 <PageTitle>Crystals</PageTitle>
-<link rel="stylesheet" href="css/kemetic.css" />
 
 <div class="crystals-page">
     <img src="images/crystal-Images/Egyptian Sunset Gemstone Altar.png"
@@ -17,7 +19,7 @@
     }
     else if (!string.IsNullOrEmpty(errorMessage))
     {
-        <p>@errorMessage</p>
+        <p role="alert">@errorMessage</p>
     }
     else if (crystals.Count == 0)
     {
@@ -25,14 +27,30 @@
     }
     else
     {
+        @if (!string.IsNullOrWhiteSpace(Search.Query))
+        {
+            <p class="search-summary">
+                Results for “@Search.Query”
+                <button class="clear-search"
+                        type="button"
+                        @onclick="ClearSearch">
+                    Clear search
+                </button>
+            </p>
+        }
+
         <div class="crystal-grid">
-            @foreach (var crystal in crystals)
+            @foreach (var crystal in FilteredCrystals)
             {
                 <CrystalCard Crystal="crystal" @key="crystal.id" />
             }
         </div>
-    }
 
+        @if (!FilteredCrystals.Any())
+        {
+            <p>No matching crystals found.</p>
+        }
+    }
 </div>
 
 @code {
@@ -40,16 +58,30 @@
     private bool isLoading = true;
     private string errorMessage = "";
 
+    private IEnumerable<Crystal> FilteredCrystals
+    {
+        get
+        {
+            var query = Search.Query.Trim();
+
+            return crystals.Where(crystal =>
+                (crystal.crystalName ?? "").Contains(
+                    query,
+                    StringComparison.OrdinalIgnoreCase));
+        }
+    }
+
     protected override async Task OnInitializedAsync()
     {
+        Search.Changed += HandleSearchChanged;
+
         try
         {
             string filePath = Path.Combine(
                 Environment.ContentRootPath,
                 "Data",
                 "Reference",
-                "crystals.json"
-            );
+                "crystals.json");
 
             string json = await File.ReadAllTextAsync(filePath);
 
@@ -58,8 +90,7 @@
                 new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
-                }
-            ) ?? new List<Crystal>();
+                }) ?? new List<Crystal>();
         }
         catch (Exception ex)
         {
@@ -69,5 +100,20 @@
         {
             isLoading = false;
         }
+    }
+
+    private void HandleSearchChanged()
+    {
+        _ = InvokeAsync(StateHasChanged);
+    }
+
+    private void ClearSearch()
+    {
+        Search.SetQuery("");
+    }
+
+    public void Dispose()
+    {
+        Search.Changed -= HandleSearchChanged;
     }
 }
