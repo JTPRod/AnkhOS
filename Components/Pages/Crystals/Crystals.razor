@@ -3,6 +3,7 @@
 @implements IDisposable
 @using System.Text.Json
 @using KemeticReference.Models
+@using Microsoft.AspNetCore.Components
 @inject IWebHostEnvironment Environment
 @inject KemeticReference.Services.DeitySearchState Search
 
@@ -115,5 +116,16 @@
     public void Dispose()
     {
         Search.Changed -= HandleSearchChanged;
+    }
+
+    [SupplyParameterFromQuery(Name = "search")]
+    public string? SearchTerm{ get; set; }
+
+    protected override void OnParametersSet()
+    {
+        if(SearchTerm is not null & Search.Query != SearchTerm)
+        {
+            Search.SetQuery(SearchTerm);
+        }
     }
 }
