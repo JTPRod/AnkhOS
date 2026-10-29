@@ -20,5 +20,6 @@
 
 <ItemGroup>
   <Folder Include="wwwroot\images\Deities\" />
+  <Folder Include="wwwroot\images\Symbols\" />
 </ItemGroup></Project>
 
