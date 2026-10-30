@@ -1,0 +1,93 @@
+[
+  {
+    "id": "Ankh",
+    "symbolName": "Ankh",
+    "img1": "images/Symbols/Ankh01.png",
+    "img2": "images/Symbols/Ankh02.png",
+    "summary": ""
+  },
+  {
+    "id": "EyeOfHorus",
+    "symbolName": "Eye of Horus",
+    "img1": "images/Symbols/EyeOfHorus01.png",
+    "img2": "images/Symbols/EyeOfHorus02.png",
+    "summary": ""
+  },
+  {
+    "id": "EyeOfRa",
+    "symbolName": "Eye of Ra",
+    "img1": "images/Symbols/EyeOfRa01.png",
+    "img2": "images/Symbols/EyeOfRa02.png",
+    "summary": ""
+  },
+  {
+    "id": "DjedPillar",
+    "symbolName": "Djed Pillar",
+    "img1": "images/Symbols/DjedPillar01.png",
+    "img2": "images/Symbols/DjedPillar02.png",
+    "summary": ""
+  },
+  {
+    "id": "ScarabBeetle",
+    "symbolName": "Scarab Beetle",
+    "img1": "images/Symbols/ScarabBeetle01.png",
+    "img2": "images/Symbols/ScarabBeetle02.png",
+    "summary": ""
+  },
+  {
+    "id": "FeatherOfMaat",
+    "symbolName": "Feather of Ma'at",
+    "img1": "images/Symbols/FeatherOfMaat01.png",
+    "img2": "images/Symbols/FeatherOfMaat02.png",
+    "summary": ""
+  },
+  {
+    "id": "WasScepter",
+    "symbolName": "Was Scepter",
+    "img1": "images/Symbols/WasScepter01.png",
+    "img2": "images/Symbols/WasScepter02.png",
+    "summary": ""
+  },
+  {
+    "id": "Cartouche",
+    "symbolName": "Cartouche",
+    "img1": "images/Symbols/Cartouche01.png",
+    "img2": "images/Symbols/Cartouche02.png",
+    "summary": ""
+  },
+  {
+    "id": "Tyet",
+    "symbolName": "Tyet",
+    "img1": "images/Symbols/Tyet01.png",
+    "img2": "images/Symbols/Tyet02.png",
+    "summary": ""
+  },
+  {
+    "id": "LotusFlower",
+    "symbolName": "Lotus Flower",
+    "img1": "images/Symbols/LotusFlower01.png",
+    "img2": "images/Symbols/LotusFlower02.png",
+    "summary": ""
+  },
+  {
+    "id": "WingedSun",
+    "symbolName": "WingedSun",
+    "img1": "images/Symbols/WingedSun01.png",
+    "img2": "images/Symbols/WingedSun02.png",
+    "summary": ""
+  },
+  {
+    "id": "Sistrum",
+    "symbolName": "Sistrum",
+    "img1": "images/Symbols/Sistrum01.png",
+    "img2": "images/Symbols/Sistrum02.png",
+    "summary": ""
+  },
+  {
+    "id": "CanopicJars",
+    "symbolName": "Canopic Jars",
+    "img1": "images/Symbols/CanopicJars01.png",
+    "img2": "images/Symbols/CanopicJars02.png",
+    "summary": ""
+  }
+]

@@ -38,10 +38,9 @@ else
         <div class="deity-detail-grid">
             <div class="deity-information">
                 <div class="information-panel">
-                    <details class="deity-dropdown crystals-dropdown">
+                    <details class="deity-dropdown">
                         <summary>
                             <span>Crystals</span>
-                            <span class="dropdown-arrow">⌄</span>
                         </summary>
 
                         <div class="dropdown-content">
@@ -54,6 +53,7 @@ else
                                 <div class="crystal-grid">
                                     @foreach (var crystal in deityCrystals)
                                     {
+                                        <a class="crystal-link" href="@($"/crystals?search={Uri.EscapeDataString(crystal.crystalName)}")">
                                         <article class="crystal-preview">
                                             <img src="@($"/{crystal.img.TrimStart('/')}")"
                                                  alt="@crystal.crystalName"
@@ -61,6 +61,7 @@ else
 
                                             <h3>@crystal.crystalName</h3>
                                         </article>
+                                        </a>
                                     }
                                 </div>
                             }
