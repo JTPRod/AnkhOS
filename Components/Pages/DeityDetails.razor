@@ -1,6 +1,18 @@
 @page "/deities/{Id}"
+
+@rendermode InteractiveServer
+
 @using KemeticReference.Models
 @using System.Text.Json
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.EntityFrameworkCore
+@using KemeticReference.Data
+@using Microsoft.AspNetCore.Identity
+
+@inject ApplicationDbContext Db
+@inject UserManager<ApplicationUser> UserManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager Navigation
 @inject KemeticReference.Services.DeityService Catalog
 @inject ILogger<DeityDetails> Logger
 @inject IHostEnvironment Environment
@@ -26,6 +38,20 @@ else
     <div class="deity-detail">
         <header class="deity-name-banner">
             <h1>@deity.Name</h1>
+            @if (userId is not null)
+            {
+                <button type="button"
+                        @onclick="ToggleFavoriteAsync"
+                        disabled="@savingFavorite">
+                    @(savingFavorite
+                                ? "Saving…"
+                                : isFavorite ? "Unfavorite" : "Favorite")
+                </button>
+            }
+            else
+            {
+                <a href="/Account/Login">Log in to favorite</a>
+            }
 
             @if (!string.IsNullOrWhiteSpace(deity.EgyptianName))
             {
@@ -137,6 +163,74 @@ else
     private Deity? deity;
     private bool loading = true;
     private bool failed;
+    // Keep your existing fields and methods.
+    private string? userId;
+    private bool isFavorite;
+    private bool savingFavorite;
+
+    private async Task LoadFavoriteStateAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        userId = UserManager.GetUserId(authState.User);
+        isFavorite = false;
+
+        if (userId is null)
+            return;
+
+        // Assumes Deity.Link is the local route, e.g. "/deities/isis".
+        var databaseDeity = await Db.Deities
+            .AsNoTracking()
+            .FirstOrDefaultAsync(d => d.Link == $"/deities/{Id}");
+
+        if (databaseDeity is not null)
+        {
+            isFavorite = await Db.UserFavorites.AnyAsync(f =>
+                f.UserId == userId &&
+                f.DeityId == databaseDeity.Id);
+        }
+    }
+
+    private async Task ToggleFavoriteAsync()
+    {
+        if (userId is null || savingFavorite)
+            return;
+
+        savingFavorite = true;
+
+        try
+        {
+            var databaseDeity = await Db.Deities
+                .FirstOrDefaultAsync(d => d.Link == $"/deities/{Id}");
+
+            if (databaseDeity is null)
+                return;
+
+            var favorite = await Db.UserFavorites.FirstOrDefaultAsync(f =>
+                f.UserId == userId &&
+                f.DeityId == databaseDeity.Id);
+
+            if (favorite is null)
+            {
+                Db.UserFavorites.Add(new UserFavorite
+                {
+                    UserId = userId,
+                    DeityId = databaseDeity.Id
+                });
+                isFavorite = true;
+            }
+            else
+            {
+                Db.UserFavorites.Remove(favorite);
+                isFavorite = false;
+            }
+
+            await Db.SaveChangesAsync();
+        }
+        finally
+        {
+            savingFavorite = false;
+        }
+    }
 
     protected override async Task OnParametersSetAsync()
     {
@@ -145,9 +239,16 @@ else
         deity = null;
         deityCrystals = [];
 
+
         try
         {
             deity = await Catalog.GetByIdAsync(Id);
+
+            if (deity is not null)
+            {
+                await LoadFavoriteStateAsync();
+
+            }
 
             if (deity is not null && deity.Crystals.Count > 0)
             {
