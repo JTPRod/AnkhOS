@@ -93,9 +93,33 @@ else
                             }
                         </div>
                     </details>
+                    <details class="deity-dropdown">
+                        <summary>
+                            <span>Symbols</span>
+                        </summary>
 
-                    <DeityDropdown Title="Signs/Symbols"
-                                   Entries="deity.Associations" />
+                        <div class="dropdown-content">
+                            @if (deitySymbols.Count == 0)
+                            {
+                                <p class="empty-crystals">No symbols listed.</p>
+                            }
+                            else
+                            {
+                                <div class="crystal-grid">
+                                    @foreach (var symbol in deitySymbols)
+                                    {
+                                        <article class="crystal-preview">
+                                            <img src="@($"/{symbol.img1.TrimStart('/')}")"
+                                                 alt="@symbol.symbolName"
+                                                 loading="lazy" />
+
+                                            <h3>@symbol.symbolName</h3>
+                                        </article>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </details>
 
                     <DeityDropdown Title="Devotional Acts"
                                    Entries="deity.DevotionalActs" />
@@ -175,6 +199,7 @@ else
     public string Id { get; set; } = "";
 
     private List<Crystal> deityCrystals = [];
+    private List<Symbol> deitySymbols = [];
 
     private Deity? deity;
     private Story? deityStory;
@@ -256,6 +281,7 @@ else
         failed = false;
         deity = null;
         deityCrystals = [];
+        deitySymbols = [];
         deityStory = null;
 
         try
@@ -309,6 +335,45 @@ else
                         crystal.crystalName,
                         StringComparer.OrdinalIgnoreCase))
                     .ToList();
+            }
+            if (deity is not null)
+            {
+                try
+                {
+                    string symbolFilePath = Path.Combine(
+                        Environment.ContentRootPath,
+                        "Data",
+                        "Reference",
+                        "symbols.json");
+
+                    string symbolJson = await File.ReadAllTextAsync(symbolFilePath);
+
+                    List<Symbol> symbolCatalog =
+                        JsonSerializer.Deserialize<List<Symbol>>(
+                            symbolJson,
+                            new JsonSerializerOptions
+                            {
+                                PropertyNameCaseInsensitive = true
+                            }) ?? [];
+
+                    deitySymbols = symbolCatalog
+     .Where(symbol => deity.Symbols != null
+         && deity.Symbols.Any(name =>
+             string.Equals(
+                 name,
+                 symbol.symbolName,
+                 StringComparison.OrdinalIgnoreCase)
+             || string.Equals(
+                 name,
+                 symbol.id,
+                 StringComparison.OrdinalIgnoreCase)))
+     .ToList();
+                }
+                catch (Exception ex)
+                {
+                    Logger.LogError(ex, "Could not load deity symbols.");
+                    deitySymbols = [];
+                }
             }
         }
         catch (Exception ex)

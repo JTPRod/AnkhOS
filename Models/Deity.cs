@@ -14,6 +14,7 @@ public sealed class Deity
  public DateOnly? LastReviewed { get; set; }
  public string EgyptianName { get; set; } = "";
  public List<string> Crystals { get; set; } = [];
+ public List<string> Symbols { get; set; } = [];
  public List<ContentEntry> DivinationMethods { get; set; } = [];
  public List<ContentEntry> Offerings { get; set; } = [];
 }
