@@ -283,7 +283,7 @@ else
                         }) ?? [];
 
                 deityStory = storyCatalog.FirstOrDefault(story =>
-                    string.Equals( story.id, deity.Id,                        StringComparison.OrdinalIgnoreCase));
+                    string.Equals( story.storyId, deity.Id,                        StringComparison.OrdinalIgnoreCase));
             }
 
             if (deity is not null && deity.Crystals.Count > 0)

@@ -42,14 +42,14 @@
             {
                 <article class="story-card">
 
-                    <h2>@story.id</h2>
+                    <h2>@story.storyId</h2>
 
                     <div class="story-content">
                         <p>@story.lore</p>
                     </div>
 
                     <a class="story-link"
-                       href="@($"/deities/{story.id.ToLowerInvariant()}")">
+                       href="@($"/deities/{story.storyId.ToLowerInvariant()}")">
                         View Deity
                     </a>
 

@@ -2,7 +2,7 @@
 {
     public class Story
     {
-        public string id { get; set; } = "";
+        public string storyId { get; set; } = "";
         public string lore { get; set; } = "";
     }
 }
