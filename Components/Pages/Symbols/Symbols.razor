@@ -21,24 +21,31 @@ else if (symbols.Count == 0)
 }
 else
 {
-    <div class="crystal-grid">
+
+    <div class="symbol-grid">
         @foreach (var symbol in symbols)
         {
-            <article class="crystal-preview">
-                <img src="@($"/{symbol.img1.TrimStart('/')}")"
+            <article class="symbol-tile">
+                <img class="symbol-tile-image"
+                     src="@($"/{symbol.img1.TrimStart('/')}")"
                      alt="@symbol.symbolName"
                      loading="lazy" />
 
-                <h3>@symbol.symbolName</h3>
+                <h3 class="symbol-tile-name">
+                    @symbol.symbolName
+                </h3>
 
                 @if (!string.IsNullOrWhiteSpace(symbol.summary))
                 {
-                    <p>@symbol.summary</p>
+                    <p class="symbol-tile-summary">
+                        @symbol.summary
+                    </p>
                 }
 
                 @if (!string.IsNullOrWhiteSpace(symbol.img2))
                 {
-                    <img src="@($"/{symbol.img2.TrimStart('/')}")"
+                    <img class="symbol-tile-secondary-image"
+                         src="@($"/{symbol.img2.TrimStart('/')}")"
                          alt="@($"{symbol.symbolName} alternate image")"
                          loading="lazy" />
                 }
