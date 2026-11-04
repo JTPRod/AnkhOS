@@ -1,5 +1,79 @@
-﻿@page "/symbols"
+﻿```razor
+@page "/symbols"
+
+@using KemeticReference.Models
+@using System.Text.Json
+@using Microsoft.AspNetCore.Hosting
+
+@inject IWebHostEnvironment Environment
 
 <PageTitle>Symbols — AnkhOS</PageTitle>
 
-<p>Information about symbols will be added here.</p>
+<h1>Symbols</h1>
+
+@if (loading)
+{
+    <p>Loading symbols...</p>
+}
+else if (symbols.Count == 0)
+{
+    <p>No symbols available.</p>
+}
+else
+{
+    <div class="crystal-grid">
+        @foreach (var symbol in symbols)
+        {
+            <article class="crystal-preview">
+                <img src="@($"/{symbol.img1.TrimStart('/')}")"
+                     alt="@symbol.symbolName"
+                     loading="lazy" />
+
+                <h3>@symbol.symbolName</h3>
+
+                @if (!string.IsNullOrWhiteSpace(symbol.summary))
+                {
+                    <p>@symbol.summary</p>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(symbol.img2))
+                {
+                    <img src="@($"/{symbol.img2.TrimStart('/')}")"
+                         alt="@($"{symbol.symbolName} alternate image")"
+                         loading="lazy" />
+                }
+            </article>
+        }
+    </div>
+}
+
+@code {
+    private List<Symbol> symbols = [];
+    private bool loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            string filePath = Path.Combine(
+                Environment.ContentRootPath,
+                "Data",
+                "Reference",
+                "symbols.json");
+
+            string json = await File.ReadAllTextAsync(filePath);
+
+            symbols = JsonSerializer.Deserialize<List<Symbol>>(
+                json,
+                new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                }) ?? [];
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+}
+```
