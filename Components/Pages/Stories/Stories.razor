@@ -1,5 +1,106 @@
 ﻿@page "/stories"
 
+@rendermode InteractiveServer
+
+@using KemeticReference.Models
+@using System.Text.Json
+
+@inject IHostEnvironment Environment
+
 <PageTitle>Stories / Lore — AnkhOS</PageTitle>
 
-<p>Stories and lore will be added here.</p>
+<div class="stories-page">
+
+    <header class="stories-header">
+        <h1>Stories / Lore</h1>
+
+        <p>
+            Explore the stories, mythology, and history
+            of the ancient Egyptian deities.
+        </p>
+    </header>
+
+    @if (loading)
+    {
+        <p>Loading stories...</p>
+    }
+    else if (failed)
+    {
+        <p role="alert">
+            Stories could not be loaded.
+        </p>
+    }
+    else if (stories.Count == 0)
+    {
+        <p>No stories available.</p>
+    }
+    else
+    {
+        <div class="stories-grid">
+
+            @foreach (var story in stories)
+            {
+                <article class="story-card">
+
+                    <h2>@story.id</h2>
+
+                    <div class="story-content">
+                        <p>@story.lore</p>
+                    </div>
+
+                    <a class="story-link"
+                       href="@($"/deities/{story.id.ToLowerInvariant()}")">
+                        View Deity
+                    </a>
+
+                </article>
+            }
+
+        </div>
+    }
+
+</div>
+
+@code {
+    private List<Story> stories = [];
+
+    private bool loading = true;
+
+    private bool failed;
+
+    protected override async Task OnInitializedAsync()
+    {
+        loading = true;
+        failed = false;
+        stories = [];
+
+        try
+        {
+            string filePath = Path.Combine(
+                Environment.ContentRootPath,
+                "Data",
+                "Reference",
+                "story.json");
+
+            string json = await File.ReadAllTextAsync(filePath);
+
+            stories = JsonSerializer.Deserialize<List<Story>>(
+                json,
+                new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                }) ?? [];
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(
+                $"Could not load stories: {ex.Message}");
+
+            failed = true;
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+}

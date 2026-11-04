@@ -109,8 +109,24 @@ else
                     <DeityDropdown Title="Offerings"
                                    Entries="deity.Offerings" />
 
-                    <DeityDropdown Title="Stories/Lore"
-                                   Entries="deity.Background" />
+                    <details class="deity-dropdown">
+                        <summary>
+                            <span>Stories/Lore</span>
+                        </summary>
+
+                        <div class="dropdown-content">
+                            @if (deityStory is null)
+                            {
+                                <p>No story available.</p>
+                            }
+                            else
+                            {
+                                <article class="information-entry">
+                                    <p class="story-lore">@deityStory.lore</p>
+                                </article>
+                            }
+                        </div>
+                    </details>
                 </div>
 
                 <section class="sources-panel" id="sources">
@@ -161,6 +177,7 @@ else
     private List<Crystal> deityCrystals = [];
 
     private Deity? deity;
+    private Story? deityStory;
     private bool loading = true;
     private bool failed;
     // Keep your existing fields and methods.
@@ -232,13 +249,14 @@ else
         }
     }
 
+    
     protected override async Task OnParametersSetAsync()
     {
         loading = true;
         failed = false;
         deity = null;
         deityCrystals = [];
-
+        deityStory = null;
 
         try
         {
@@ -248,6 +266,24 @@ else
             {
                 await LoadFavoriteStateAsync();
 
+                string storyFilePath = Path.Combine(
+                    Environment.ContentRootPath,
+                    "Data",
+                    "Reference",
+                    "story.json");
+
+                string storyJson = await File.ReadAllTextAsync(storyFilePath);
+
+                List<Story> storyCatalog =
+                    JsonSerializer.Deserialize<List<Story>>(
+                        storyJson,
+                        new JsonSerializerOptions
+                        {
+                            PropertyNameCaseInsensitive = true
+                        }) ?? [];
+
+                deityStory = storyCatalog.FirstOrDefault(story =>
+                    string.Equals( story.id, deity.Id,                        StringComparison.OrdinalIgnoreCase));
             }
 
             if (deity is not null && deity.Crystals.Count > 0)
@@ -285,4 +321,5 @@ else
             loading = false;
         }
     }
+
 }
